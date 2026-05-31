@@ -1,17 +1,23 @@
+import subprocess
+import sys
+
 import pypsa
-import pip
 
 version = snakemake.wildcards.highs_version
 resolution = int(snakemake.wildcards.resolution)
 
-pip.main(
+subprocess.run(
     [
+        sys.executable,
+        "-m",
+        "pip",
         "install",
         "--force-reinstall",
         "--no-deps",
         "--no-cache-dir",
         f"highspy=={version}",
-    ]
+    ],
+    check=True,
 )
 
 n = pypsa.Network(snakemake.input[0])

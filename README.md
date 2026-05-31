@@ -14,12 +14,14 @@ are subsequently deployed to https://fneum.github.io/highs-pypsa-progress/.
 
 ## Run Locally
 
+Install [uv](https://docs.astral.sh/uv/), then run:
+
 ```sh
-mamba create -n highs python=3.10 pip
-mamba activate highs
-pip install -r requirements.txt
-snakemake -j1 -F
+uv run snakemake -j1 -F
 ```
+
+`uv` automatically creates the environment from `pyproject.toml`/`uv.lock` on
+first run.
 
 ## License
 

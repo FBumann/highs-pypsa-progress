@@ -1,8 +1,5 @@
 import requests
 from packaging.version import parse
-from snakemake.remote.HTTP import RemoteProvider as HTTPRemoteProvider
-
-HTTP = HTTPRemoteProvider()
 
 
 def list_versions():
@@ -13,6 +10,10 @@ def list_versions():
 
 
 configfile: "config.yaml"
+
+
+storage:
+    provider="http",
 
 
 wildcard_constraints:
@@ -27,7 +28,7 @@ rule all:
 
 rule benchmark:
     input:
-        HTTP.remote(config["file"], keep_local=True),
+        storage.http(config["file"], keep_local=True),
     output:
         "benchmark/run_{resolution}_{highs_version}.tsv",
     benchmark:

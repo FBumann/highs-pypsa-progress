@@ -1,0 +1,26 @@
+[project]
+name = "highs-pypsa-progress"
+version = "0.1.0"
+description = "Continuous HiGHS benchmark for solving PyPSA networks"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+dependencies = [
+  "pypsa",
+  "pandas",
+  "hvplot",
+  "holoviews",
+  "bokeh",
+  "snakemake>=8",
+  "snakemake-storage-plugin-http",
+  "highspy",
+  "requests",
+  "packaging",
+  "pip",
+]
+
+[dependency-groups]
+dev = ["pre-commit"]
+
+[tool.uv]
+package = false
