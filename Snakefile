@@ -31,8 +31,6 @@ rule benchmark:
         storage.http(config["file"], keep_local=True),
     output:
         "benchmark/run_{resolution}_{highs_version}.tsv",
-    benchmark:
-        repeat("benchmark/run_{resolution}_{highs_version}.tsv", config["trials"])
     script:
         "scripts/benchmark.py"
 

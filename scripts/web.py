@@ -28,12 +28,17 @@ common = dict(
     xlabel="n-hourly resolution",
 )
 
-left = df["s"].unstack().hvplot(title="Time", ylabel="seconds", **common).opts(**opts)
+left = (
+    df["solve_time"]
+    .unstack()
+    .hvplot(title="Solve time", ylabel="seconds", **common)
+    .opts(**opts)
+)
 
 right = (
-    df["max_rss"]
+    df["solve_memory"]
     .unstack()
-    .hvplot(title="Memory", ylabel="megabytes", **common)
+    .hvplot(title="Solve memory", ylabel="megabytes", **common)
     .opts(**opts)
 )
 

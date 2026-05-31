@@ -16,6 +16,7 @@ dependencies = [
   "highspy",
   "requests",
   "packaging",
+  "psutil",
   "pip",
 ]
 
