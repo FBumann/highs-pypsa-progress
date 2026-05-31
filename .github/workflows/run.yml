@@ -24,3 +24,13 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: web
+    - name: Archive monthly results as a release
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        tag="results-$(date -u +%Y-%m)"
+        title="Benchmark results $(date -u +%Y-%m)"
+        notes="HiGHS benchmark for all PyPI versions, generated $(date -u +%Y-%m-%dT%H:%MZ) on $(uname -srm)."
+        gh release create "$tag" web/results.csv web/index.html \
+          --title "$title" --notes "$notes" --latest \
+        || gh release upload "$tag" web/results.csv web/index.html --clobber
